@@ -128,5 +128,6 @@ alias chmac='wlpdown && sudo macchanger -A wlp3s0 && wlp'
 alias crackemall='wlpdown && sudo macchanger -A wlp3s0 && wlp && sudo airmon-ng start wlp3s0 && sudo wlandump-ng -D -s -i wlp3s0mon -o capture.cap && sudo airmon-ng stop wlp3s0mon && echo MONITOR MODE IS OFF!'
 alias dumpemall='sudo airmon-ng start wlp3s0 && sudo airodump-ng wlp3s0mon && sudo airmon-ng stop wlp3s0mon && echo MONITOR MODE IS OFF!'
 alias mountfa='sudo mount -t vfat -ouser,umask=0000'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
