@@ -9,7 +9,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.SpawnOnce
 
 myManageHook = composeAll
-  [ stringProperty "WM_WINDOW_ROLE" =? "PictureInPicture" --> doIgnore ]
+  [ stringProperty "WM_WINDOW_ROLE" =? "PictureInPicture" --> doIgnore
+  , className =? "TelegramDesktop" --> doShift "7" ]
 
 main = do
   xmonad $ ewmh $ docks $ defaultConfig {
