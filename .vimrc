@@ -3,29 +3,25 @@ Plug 'vim-airline/vim-airline'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
-Plug 'dense-analysis/ale'
-
 call plug#end()
 
-syntax enable
 colorscheme gruvbox
 
+set cursorline
 set background=dark
-set termguicolors
-"set shiftwidth=2
-set noshowmode
-"set expandtab
 set relativenumber
+set linebreak
+set incsearch
+set tabstop=2 shiftwidth=2 expandtab
 
-let g:netrw_liststyle= 3
-
-"Ale
-let b:ale_linters = ['eslint']
-let g:ale_linters_explicit = 1
+"let g:rainbow_active = 1
+"syntax enable
+"set shiftwidth=2
+"set termguicolors
+"set noshowmode
+"let g:netrw_liststyle= 3
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -35,13 +31,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
 
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"let g:prettier#autoformat = 0
+"let g:gruvbox_contrast_dark = 'hard'
 
 "Change background shortcut
 map <Leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
-
+map <Leader>n :set invrelativenumber<CR>
 map <Leader>t :bel vert term<CR>
 
 "Airline powerline
