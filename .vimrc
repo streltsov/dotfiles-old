@@ -5,6 +5,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 colorscheme gruvbox
@@ -16,12 +17,18 @@ set linebreak
 set incsearch
 set tabstop=2 shiftwidth=2 expandtab
 
-"let g:rainbow_active = 1
-"syntax enable
-"set shiftwidth=2
-"set termguicolors
-"set noshowmode
-"let g:netrw_liststyle= 3
+"ESlint
+" Enable ESLint only for JavaScript.
+let b:ale_linters = ['eslint']
+" Fix files with ESLint.
+let b:ale_fixers = ['eslint']
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   'javascript': ['eslint']
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -32,10 +39,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
-
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-"let g:prettier#autoformat = 0
-"let g:gruvbox_contrast_dark = 'hard'
 
 "Change background shortcut
 map <Leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
