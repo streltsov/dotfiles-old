@@ -112,22 +112,23 @@ export npm_config_prefix=~/.node_modules
 bindkey -v
 export KEYTIMEOUT=1
 
-alias vim='vim -p'
 alias ls='ls -1 --color=auto'
 alias rmorphans='sudo pacman -Rns $(pacman -Qtdq)'
 alias fbtofbzip="find . -name '*.fb2' -print -exec zip '{}'.zip '{}' \; -exec rm '{}' \;"
 alias webcam='mpv av://v4l2:/dev/video0'
-alias wlp='sudo ip link set wlp3s0 up'
-alias wlpdown='sudo ip link set wlp3s0 down'
+alias wlp='sudo ip link set wlp4s0 up'
+alias wlpdown='sudo ip link set wlp4s0 down'
 alias wifi-menu='sudo wifi-menu'
 alias backlight='sudo vim /sys/class/backlight/intel_backlight/brightness'
 alias myip='curl smart-ip.net/myip'
 alias allapps='comm -23 <(pacman -Qeq | sort) <(pacman -Sqg base base-devel xorg | sort)'
 alias mkpass='</dev/urandom tr -dc "0123456789qwertyuiopasdfghjklzxcvbnm!@#$%^&*()QWERTYUIOPASDFGHJKLZXCVBNM" | head -c48; echo ""'
-alias chmac='wlpdown && sudo macchanger -A wlp3s0 && wlp'
-alias crackemall='wlpdown && sudo macchanger -A wlp3s0 && wlp && sudo airmon-ng start wlp3s0 && sudo wlandump-ng -D -s -i wlp3s0mon -o capture.cap && sudo airmon-ng stop wlp3s0mon && echo MONITOR MODE IS OFF!'
-alias dumpemall='sudo airmon-ng start wlp3s0 && sudo airodump-ng wlp3s0mon && sudo airmon-ng stop wlp3s0mon && echo MONITOR MODE IS OFF!'
+alias chmac='wlpdown && sudo macchanger -A wlp4s0 && wlp'
+alias crackemall='wlpdown && sudo macchanger -A wlp4s0 && wlp && sudo airmon-ng start wlp4s0 && sudo wlandump-ng -D -s -i wlp4s0mon -o capture.cap && sudo airmon-ng stop wlp4s0mon && echo MONITOR MODE IS OFF!'
+alias dumpemall='sudo airmon-ng start wlp4s0 && sudo airodump-ng wlp4s0mon && sudo airmon-ng stop wlp4s0mon && echo MONITOR MODE IS OFF!'
 alias mountfa='sudo mount -t vfat -ouser,umask=0000'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias myip='curl –s https://icanhazip.com'
+alias chillmeup='mpv --no-video https://www.youtube.com/watch\?v\=5qap5aO4i9A --volume=40'
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
