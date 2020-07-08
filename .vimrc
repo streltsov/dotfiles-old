@@ -6,6 +6,7 @@ Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'dense-analysis/ale'
+Plug 'metakirby5/codi.vim'
 call plug#end()
 
 colorscheme gruvbox
