@@ -1,5 +1,4 @@
 import XMonad
-
 import XMonad.Util.EZConfig
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
@@ -33,12 +32,6 @@ main = do
         , ((0, xK_Print),                      spawn "maim | tee ~/pics/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png")
         , ((mod4Mask, xK_m),                   spawn "maim -s -u | xclip -selection clipboard -t image/png -i")
         , ((mod4Mask, xK_x),                   spawn "slock")
-
-        -- Backlight
-        , ((mod4Mask .|. shiftMask, xK_Right), spawn "xbacklight -set 100")
-        , ((mod4Mask .|. shiftMask, xK_Left),  spawn "xbacklight -set 1")
-        , ((mod4Mask,  xK_Right),              spawn "xbacklight -inc 10")
-        , ((mod4Mask,  xK_Left),               spawn "xbacklight -dec 10")
 
         -- Layout bindings
         , ((mod4Mask, xK_b), sendMessage ToggleStruts)
