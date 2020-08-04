@@ -29,7 +29,7 @@ main = do
         -- Special commands
         , ((mod4Mask, xK_End),                 spawn "poweroff")
         , ((mod4Mask .|. shiftMask, xK_End),   spawn "reboot")
-        , ((0, xK_Print),                      spawn "maim | tee ~/pics/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png")
+        , ((0, xK_Print),                      spawn "maim -u | tee ~/pics/screenshots/$(date +%s).png | xclip -selection clipboard -t image/png")
         , ((mod4Mask, xK_m),                   spawn "maim -s -u | xclip -selection clipboard -t image/png -i")
         , ((mod4Mask, xK_x),                   spawn "slock")
 
