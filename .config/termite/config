@@ -6,9 +6,10 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = Monospace 8
-font = Inconsolata LGC 8
-font = Inconsolata for Powerline 9
+#font = Monospace 8
+#font = Inconsolata LGC 8
+font = Inconsolata for Powerline 12
+font  = Operator Mono Book 10
 
 #fullscreen = true
 #icon_name = terminal
@@ -46,6 +47,7 @@ scrollback_lines = 10000
 [colors]
 # hard contrast: background = #1d2021
 background = #282828
+background = #000000
 # soft contrast: background = #32302f
 foreground = #ebdbb2
 foreground_bold = #ebdbb2
