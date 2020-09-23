@@ -23,6 +23,7 @@ main = do
 
         -- Apps and tools
           ((mod4Mask, xK_f),                   spawn "firefox")
+        , ((mod4Mask, xK_n),                   spawn "~/.firefox-nightly/firefox")
         , ((mod4Mask, xK_d),                   spawn "goldendict")
         , ((mod4Mask, xK_v),                   spawn "pavucontrol")
 
