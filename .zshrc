@@ -101,11 +101,13 @@ autoload -Uz compinit promptinit
 compinit
 promptinit
 
+#export PATH="$PATH:/opt/yarn-1.22.10/bin"
 export EDITOR="/usr/bin/vim"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
+export PATH="$HOME/.local/bin:$PATH"
 
 #Vi style
 #set -o vi
@@ -124,6 +126,7 @@ alias myip='curl smart-ip.net/myip'
 alias allapps='comm -23 <(pacman -Qeq | sort) <(pacman -Sqg base base-devel xorg | sort)'
 alias mkpass='</dev/urandom tr -dc "0123456789qwertyuiopasdfghjklzxcvbnm!@#$%^&*()QWERTYUIOPASDFGHJKLZXCVBNM" | head -c48; echo ""'
 alias chmac='wlpdown && sudo macchanger -A wlp4s0 && wlp'
+alias crackemall='wlpdown && sudo macchanger -A wlp4s0 && wlp && sudo airmon-ng start wlp4s0 && sudo wlandump-ng -D -s -i wlp4s0mon -o capture.cap && sudo airmon-ng stop wlp4s0mon && echo MONITOR MODE IS OFF!'
 alias dumpemall='sudo airmon-ng start wlp4s0 && sudo airodump-ng wlp4s0mon && sudo airmon-ng stop wlp4s0mon && echo MONITOR MODE IS OFF!'
 alias mountfa='sudo mount -t vfat -ouser,umask=0000'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
