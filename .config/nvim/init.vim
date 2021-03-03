@@ -1,7 +1,7 @@
 "automated installation of vimplug if not installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
@@ -18,8 +18,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'Quramy/tsuquyomi'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 call plug#end()
 
 colorscheme gruvbox
@@ -38,9 +36,9 @@ let b:ale_linters = ['eslint']
 let b:ale_fixers = ['eslint']
 " In ~/.vim/vimrc, or somewhere similar.
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\}
+            \   'javascript': ['eslint'],
+            \   'typescript': ['eslint'],
+            \}
 
 "Codi
 let g:codi#width = 120
@@ -61,6 +59,9 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
 
+"Enter distraction free mode
+map <Leader>df :Goyo<CR>
+
 "Change background shortcut
 map <Leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 map <Leader>n :set invrelativenumber<CR>
@@ -75,15 +76,13 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-" set to 1, nvim will open the preview window after entering the markdown buffer
-" default: 0
-let g:mkdp_auto_start = 0
-
+"Show markdown syntax
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 
+"Navigate with russian layout
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
