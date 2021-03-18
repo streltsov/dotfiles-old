@@ -76,11 +76,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -102,10 +102,12 @@ compinit
 promptinit
 
 #export PATH="$PATH:/opt/yarn-1.22.10/bin"
-export EDITOR="/usr/bin/vim"
+#export EDITOR="/usr/bin/vim"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 PATH="$HOME/.node_modules/bin:$PATH"
+#export PATH="$PATH:/usr/yarn/bin"
+#export PATH="$PATH:`yarn global bin`"
 export npm_config_prefix=~/.node_modules
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -132,5 +134,9 @@ alias mountfa='sudo mount -t vfat -ouser,umask=0000'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias myip='curl –s https://icanhazip.com'
 alias chillmeup='mpv --no-video https://www.youtube.com/watch\?v\=5qap5aO4i9A --volume=40'
+alias todo='todo.sh'
+alias vim='nvim'
+alias realvim='vim'
+alias listen='mpv --no-video --volume=20'
 
 #export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
