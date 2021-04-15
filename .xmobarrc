@@ -8,29 +8,36 @@ Config {
        , commands = [ 
 
                       Run MultiCpu [
-                               "--template" , "CPU: <total>%"
+                               "--template" , "CPU:<total>"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "#b8bb26"
                              , "--normal"   , "orange"
                              , "--high"     , "#fb4934"
+                             , "--ppad"     , "2"
+                             , "--suffix"   , "True"
                              ] 10
+
                     , Run Memory [
-                               "--template" ,"RAM: <usedratio>%"
+                               "--template" ,"RAM:<usedratio>"
                              , "--Low"      , "60"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "#b8bb26"
                              , "--normal"   , "orange"
                              , "--high"     , "#fb4934"
+                             , "--ppad"     , "2"
+                             , "--suffix"   , "True"
                              ] 10
+
                     , Run Battery [ 
-                               "--template" , "<acstatus> <left>%"
+                               "--template" , "<acstatus><left>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "#fb4934"
                              , "--normal"   , "orange"
                              , "--high"     , "#b8bb26"
-
+                             , "--ppad"     , "2"
+                             , "--suffix"   , "True"
                              , "--" -- battery specific options
                                        -- discharging status
                                        , "-o"	, "Bat:"
