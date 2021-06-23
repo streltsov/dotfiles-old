@@ -7,49 +7,48 @@ endif
 
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-"Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'sheerun/vim-polyglot'
+Plug 'morhetz/gruvbox'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'morhetz/gruvbox'
-Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'ryanoasis/vim-devicons'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'metakirby5/codi.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'Yggdroot/indentLine'
-Plug 'Quramy/tsuquyomi'
-Plug 'junegunn/goyo.vim'
 call plug#end()
 
 colorscheme gruvbox
 
-set cursorline
 set background=dark
+set encoding=UTF-8
 set relativenumber
+set cursorline
 set linebreak
 set incsearch
-set tabstop=2 shiftwidth=2 expandtab
+set hidden
+set splitbelow
 
-"ESlint
-" Enable ESLint only for JavaScript.
-let b:ale_linters = ['eslint']
-" Fix files with ESLint.
-let b:ale_fixers = ['eslint']
-" In ~/.vim/vimrc, or somewhere similar.
-let g:ale_fixers = {
-            \   'javascript': ['eslint'],
-            \   'typescript': ['eslint'],
-            \}
+" <COC Shit>
+" Give more space for displaying messages.
+set cmdheight=2
 
-"Codi
-let g:codi#width = 120
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-"Kite
-let g:kite_supported_languages = ['javascript', 'typescript']
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+" Tool tip documentation and diagnostics 
+nnoremap <silent> K :call CocAction('doHover')<CR>
+" </COC Shit>
 
-"NerdTree
+set shiftwidth=2 softtabstop=2 expandtab autoindent smartindent
+"set colorcolumn=80
+
+" <NerdTree>
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -58,14 +57,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
-
-"Enter distraction free mode
-map <Leader>df :Goyo<CR>
+" </NerdTree>
 
 "Change background shortcut
 map <Leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
 map <Leader>n :set invrelativenumber<CR>
-map <Leader>t :bel vert term<CR>
+map <Leader>p :14sp term://node \| :startinsert<CR>
+"map <Leader>t :bel vert term<CR>
 
 "Airline powerline
 let g:airline#extensions#tabline#enabled = 1
@@ -87,3 +85,6 @@ set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
