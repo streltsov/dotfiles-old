@@ -18,6 +18,11 @@ Config {
                              , "--suffix"   , "True"
                              ] 10
 
+                    , Run MultiCoreTemp ["-t", "Temp:<avg>°C",
+                               "-L", "60", "-H", "80"
+                             , "-l", "green", "-n", "yellow", "-h", "red"
+                             , "--", "--mintemp", "20", "--maxtemp", "100"] 50
+
                     , Run Memory [
                                "--template" ,"RAM:<usedratio>"
                              , "--Low"      , "60"        -- units: %
@@ -69,6 +74,6 @@ Config {
 
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%multicpu% %memory% %disku% %battery% <fc=#83a598>%enp3s0%</fc> <fc=#83a598>%wlp4s0wi%:</fc>%wlp4s0% }\
+       , template = "%multicpu% %multicoretemp% %memory% %disku% %battery% <fc=#83a598>%enp3s0%</fc> <fc=#83a598>%wlp4s0wi%:</fc>%wlp4s0% }\
                     \{<fc=#b8bb26></fc> %kbd% || <fc=#fb4934>%date%</fc>"
        }
