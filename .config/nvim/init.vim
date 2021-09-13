@@ -30,13 +30,21 @@ colorscheme gruvbox
 
 set background=dark
 set encoding=UTF-8
-set relativenumber
-set nu rnu
 set cursorline
 set linebreak
 set incsearch
 set hidden
 set splitbelow
+
+" Automatic toggling between line number modes
+set number
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
 
 " <COC Shit>
 " Give more space for displaying messages.
