@@ -5,6 +5,11 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
+" Add the current file's directory to the path if not already present.
+autocmd BufRead *
+      \ let s:tempPath=escape(escape(expand(":pwd"), ' '), '\ ') |
+      \ exec "set path+=".s:tempPath
+
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
@@ -17,6 +22,8 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'metakirby5/codi.vim'
+Plug 'vim-test/vim-test'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 colorscheme gruvbox
@@ -24,6 +31,7 @@ colorscheme gruvbox
 set background=dark
 set encoding=UTF-8
 set relativenumber
+set nu rnu
 set cursorline
 set linebreak
 set incsearch
