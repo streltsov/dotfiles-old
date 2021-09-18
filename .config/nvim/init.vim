@@ -1,29 +1,27 @@
-"automated installation of vimplug if not installed
+" Automated installation of vimplug if not installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
-" Add the current file's directory to the path if not already present.
-autocmd BufRead *
-      \ let s:tempPath=escape(escape(expand(":pwd"), ' '), '\ ') |
-      \ exec "set path+=".s:tempPath
-
 call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'sheerun/vim-polyglot'
+" Gruvbox
 Plug 'morhetz/gruvbox'
+" Airline
+Plug 'vim-airline/vim-airline'
+" Polyglot
+Plug 'sheerun/vim-polyglot'
+" Indent Line
 Plug 'Yggdroot/indentLine'
+" Git Gutter
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Icons
 Plug 'ryanoasis/vim-devicons'
+" COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Codi
 Plug 'metakirby5/codi.vim'
-Plug 'vim-test/vim-test'
-Plug 'SirVer/ultisnips'
 call plug#end()
 
 colorscheme gruvbox
@@ -35,6 +33,9 @@ set linebreak
 set incsearch
 set hidden
 set splitbelow
+set path+="**"
+set nocompatible
+filetype plugin on
 
 " Automatic toggling between line number modes
 set number
@@ -44,6 +45,17 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+" netrw
+
+" Toggle Vexplore
+map <C-n> :Lexplore<CR>
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
 
 
 " <COC Shit>
@@ -73,29 +85,18 @@ let g:codi#interpreters = {
 \   'javascript': {
 \       'bin': 'babel-node',
 \   },
-\   'typescript': {
-\       'bin': 'tsun',
-\    }
 \}
-
-" <NerdTree>
-map <C-n> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
-" </NerdTree>
 
 "Change background shortcut
 map <Leader>bg :let &background = ( &background == "dark" ? "light" : "dark" )<CR>
-map <Leader>n :set invrelativenumber<CR>
+" Open Node.js repl
 map <Leader>p :14sp term://node \| :startinsert<CR>
+" Open Haskell repl
+map <Leader>h :14sp term://ghci \| :startinsert<CR>
+"Open ranger
 map <Leader>e :tabnew term://ranger \| :startinsert<CR>
+"Open terminal
 map <Leader>t :14sp term://zsh \| :startinsert<CR>
-"map <Leader>t :bel vert term<CR>
 
 "Airline powerline
 let g:airline#extensions#tabline#enabled = 1
@@ -111,7 +112,6 @@ let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
-
 "Navigate with russian layout
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -120,20 +120,6 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Close buffer on terminal exit
  augroup terminal_settings
