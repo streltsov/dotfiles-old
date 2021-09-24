@@ -8,6 +8,8 @@ endif
 call plug#begin()
 " Gruvbox
 Plug 'morhetz/gruvbox'
+" Gruvbox Material
+Plug 'sainnhe/gruvbox-material'
 " Airline
 Plug 'vim-airline/vim-airline'
 " Polyglot
@@ -22,6 +24,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Codi
 Plug 'metakirby5/codi.vim'
+" Kite
+Plug 'kiteco/vim-plugin'
 call plug#end()
 
 colorscheme gruvbox
